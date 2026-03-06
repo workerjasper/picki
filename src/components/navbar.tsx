@@ -1,12 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import { useState } from 'react';
+import { CATEGORIES } from '@/types';
 
 export default function Navbar() {
   const { user, loading, signOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
@@ -76,6 +79,35 @@ export default function Navbar() {
               로그인
             </Link>
           )}
+        </div>
+      </div>
+
+      {/* 카테고리 스크롤 바 */}
+      <div className="max-w-2xl mx-auto px-4 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-1 pb-2 pt-1 whitespace-nowrap">
+          <Link
+            href="/"
+            className={`text-xs px-3 py-1.5 rounded-full transition font-medium ${
+              pathname === '/'
+                ? 'bg-indigo-500 text-white'
+                : 'text-gray-500 hover:text-indigo-500 hover:bg-indigo-50'
+            }`}
+          >
+            전체
+          </Link>
+          {CATEGORIES.map((cat) => (
+            <Link
+              key={cat}
+              href={`/category/${encodeURIComponent(cat)}`}
+              className={`text-xs px-3 py-1.5 rounded-full transition font-medium ${
+                pathname === `/category/${encodeURIComponent(cat)}`
+                  ? 'bg-indigo-500 text-white'
+                  : 'text-gray-500 hover:text-indigo-500 hover:bg-indigo-50'
+              }`}
+            >
+              {cat}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
