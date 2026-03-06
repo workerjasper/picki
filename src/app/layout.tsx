@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth-context';
 import Navbar from '@/components/navbar';
@@ -15,14 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <head>
-        <script
+      <body className="bg-gray-50 min-h-screen">
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823246129545432"
           crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
-      </head>
-      <body className="bg-gray-50 min-h-screen">
         <AuthProvider>
           <Navbar />
           <main className="max-w-2xl mx-auto px-4 py-6">{children}</main>
