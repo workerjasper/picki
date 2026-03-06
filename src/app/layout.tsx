@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <meta name="google-adsense-account" content="ca-pub-2823246129545432" />
+        <meta name="google-site-verification" content="b8_b79lZBa9S1is897NauBCDNYDE0TtHdP1LIgaY90s" />
       </head>
       <body className="bg-gray-50 min-h-screen">
         <AuthProvider>
