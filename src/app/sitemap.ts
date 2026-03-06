@@ -25,9 +25,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // 카테고리 검색 페이지들
+  // 카테고리 페이지들
   const categoryUrls: MetadataRoute.Sitemap = CATEGORIES.map((category) => ({
-    url: `${BASE_URL}/search?category=${encodeURIComponent(category)}`,
+    url: `${BASE_URL}/category/${encodeURIComponent(category)}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.8,
