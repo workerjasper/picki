@@ -15,6 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823246129545432"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="bg-gray-50 min-h-screen">
         <AuthProvider>
           <Navbar />
