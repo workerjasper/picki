@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { Suspense, useEffect, useState, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase-browser';
 import { useAuth } from '@/lib/auth-context';
@@ -8,7 +8,7 @@ import { Link as LinkType, Category } from '@/types';
 import LinkCard from '@/components/link-card';
 import CategoryFilter from '@/components/category-filter';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { user } = useAuth();
@@ -137,5 +137,21 @@ export default function SearchPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="pt-4">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">검색</h1>
+        <div className="animate-pulse space-y-4">
+          <div className="h-10 bg-gray-200 rounded-xl" />
+          <div className="h-8 bg-gray-200 rounded w-1/2" />
+        </div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
